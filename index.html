@@ -27,6 +27,9 @@
             </form>
         </div>
     </div>
+    <audio id="playMe">
+        <source src="audio/clearly-602.mp3" type="audio/mp3">
+    </audio>
     <!-- <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
@@ -58,6 +61,8 @@
 
 
     socket.on('chat message', function(msg,username) {
+        let playMe =  document.getElementById("playMe")
+        playMe.play() 
             const div = document.createElement('div');
             div.classList.add('message');
             //div.innerHTML = `<p class="meta">Sender<span></span></p><p class="text">${msg}</p>`;
