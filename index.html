@@ -7,6 +7,7 @@
     <!--<link rel="stylesheet" href="css/chat_style.css">-->
 	    <link rel="stylesheet" href="chat_style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <title>Live Chat</title>
 <link rel="stylesheet" href="/style.css">
   </head>
@@ -22,11 +23,14 @@
         </main>
         <div class="chat-form-container">
             <form id="chat-form">
+          <span class="attachmenticon">+</span>
+
                 <input id="msg" type="text" placeholder="Enter Message" class="form-control rounded-0" required autocomplete="off" />
                 <input class="btn btn-success rounded-0" id="send-message-btn" type="submit" value="Send">
             </form>
         </div>
     </div>
+
     <audio id="playMe">
         <source src="audio/clearly-602.mp3" type="audio/mp3">
     </audio>
@@ -42,6 +46,7 @@
 
 
 <script>
+   $("#example1").emojioneArea();
      let socket = io();
     const chatForm = document.getElementById('chat-form');
     const chatMessages = document.querySelector('.chat-messages-area');
@@ -62,12 +67,18 @@
 
     socket.on('chat message', function(msg,username) {
         let playMe =  document.getElementById("playMe")
-        playMe.play() 
-            const div = document.createElement('div');
-            div.classList.add('message');
-            //div.innerHTML = `<p class="meta">Sender<span></span></p><p class="text">${msg}</p>`;
-            div.innerHTML = `<p class="meta">${username}<span></span></p><p class="text">${msg}</p>`;
-        document.querySelector('.chat-messages-area').appendChild(div);
+        playMe.play()
+
+            let replyMessage = `<div>`//document.createElement('div');
+         
+            replyMessage+= `<div class="message ml-3">`;
+           
+           
+            replyMessage += `<p class="meta">${username}<span></span></p><p class="text">${msg}</p>`;
+            replyMessage += `</div></div>`;
+
+            $(".chat-messages-area").append(replyMessage)
+        //document.querySelector('.chat-messages-area').appendChild(div);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 </script>

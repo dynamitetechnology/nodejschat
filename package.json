@@ -4,6 +4,7 @@
   "description": "charapp",
   "main": "server.js",
   "dependencies": {
+    "emojionearea": "^3.0.0",
     "express": "^4.17.1",
     "path": "^0.12.7",
     "socket.io": "^4.1.3"
