@@ -114,3 +114,8 @@ a {
 	font-size: xx-large;
     padding-right: 5px;
 }
+
+.local-message{
+	display: flex;
+    justify-content: flex-end;
+}

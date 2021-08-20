@@ -52,16 +52,28 @@
     const chatMessages = document.querySelector('.chat-messages-area');
     let username = prompt('Enter Your UserName')
     localStorage.setItem('username',username)
-    chatForm.addEventListener('submit', (e) => {
+    chatForm.addEventListener('submit', e => {
         e.preventDefault();
 
         const message = e.target.elements.msg.value;
         console.log(" --> ", message);
 
-        socket.emit('chat message', message,localStorage.getItem('username'));
+
+        socket.emit('chat message', message, localStorage.getItem('username'));
         //Clear input message box
         e.target.elements.msg.value = '';
         e.target.elements.msg.focus();
+
+
+        let replyMessage = `<div class="local-message ">`//document.createElement('div');
+         
+         replyMessage+= `<div class="message ml-3">`;
+        
+        
+         replyMessage += `<p class="meta">${localStorage.getItem('username')}<span></span></p><p class="text">${message}</p>`;
+         replyMessage += `</div></div>`;
+
+         $(".chat-messages-area").append(replyMessage)
     })
 
 

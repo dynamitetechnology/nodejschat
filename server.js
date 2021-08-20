@@ -13,9 +13,9 @@ app.get('/', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-  io.on('connection', (socket) => {
+  io.on('connection', socket => {
     socket.on('chat message', (msg,username) => {
-      io.emit('chat message', msg,username);
+      socket.broadcast.emit('chat message', msg,username);
     });
   });
 
